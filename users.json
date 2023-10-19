@@ -1,0 +1,22 @@
+{
+   "admin": {
+      "password": "admin1",
+      "role": "ADMIN",
+      "name": "admin"
+   },
+   "mak": {
+      "password": "mak1",
+      "role": "ADMIN",
+      "name": "mak"
+   },
+   "dag": {
+      "password": "dag1",
+      "role": "USER",
+      "name": "dag"
+   },
+   "chuhan": {
+      "password": "chuhan1",
+      "role": "USER",
+      "name": "chuhan"
+   }
+}
