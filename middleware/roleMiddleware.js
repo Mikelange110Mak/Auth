@@ -3,7 +3,7 @@ import { SECRET_KEY } from "../config.js"
 
 
 //Функция которая будет принимать в себя роли которые разрешены для доступа к роуту
-const checkUser = (acceptedRoles) => {
+const checkRole = (acceptedRoles) => {
    return function (req, res, next) {
       if (req.method === "OPTIONS") next()
 
@@ -24,7 +24,7 @@ const checkUser = (acceptedRoles) => {
             if (acceptedRoles.includes(role)) hasRole = true
          });
 
-         if (!hasRole) return res.status(403).json({ message: "Доступ только для админов" })
+         if (!hasRole) return res.status(403).json({ message: `Доступ только для ${acceptedRoles}` })
 
          next()
 
@@ -35,4 +35,4 @@ const checkUser = (acceptedRoles) => {
    }
 }
 
-export default checkUser
+export default checkRole

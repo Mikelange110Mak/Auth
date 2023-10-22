@@ -1,8 +1,8 @@
 import Router from "express";
 import controller from "./controllers/authController.js"
 import { check } from "express-validator";
-import userData from "./middleware/authMiddleware.js";
-import checkUser from "./middleware/roleMiddleware.js";
+import checkAuthorization from "./middleware/authMiddleware.js";
+import checkRole from "./middleware/roleMiddleware.js";
 
 const router = new Router();
 
@@ -15,6 +15,8 @@ router.post('/registration', [
    check("password", "Пароль должен быть больше 3 и меньше 14 символов").isLength({ min: 4, max: 14 }),
    check("password", "Пароль должен быть на латинице ЗАЕБАЛ!").matches(/[a-zA-Z]/)
 ], controller.registration)
-router.get('/users', checkUser(["ADMIN"]), controller.getUser)
+router.get('/users', checkRole(["ADMIN"]), controller.getUser)
+router.get('/content', checkAuthorization, (req, res) => res.send('Content'))
+router.get('/admin-content', checkRole(["ADMIN"]), (req, res) => res.send('Admin-Content'))
 
 export default router

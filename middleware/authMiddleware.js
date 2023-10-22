@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken"
 import { SECRET_KEY } from "../config.js"
 
 
-const userData = (req, res, next) => {
+const checkAuthorization = (req, res, next) => {
    if (req.method === "OPTIONS") next()
 
    try {
@@ -26,4 +26,4 @@ const userData = (req, res, next) => {
 
 }
 
-export default userData;
+export default checkAuthorization;
